@@ -17,8 +17,8 @@ Para rodar o serviço execute o comando 'java -jar target\RESTService-1.0.0.jar'
 
 - GET /books 
   - Retorna um Json com uma lista de livros (configurado em um limite de 10) e uma rota para os proximos livros se houver (paginação). Está rota tambem permite pesquisa por parametros. Os parametros disponiveis são 'author', 'title', 'endYear' e 'startYear'.
-  - Exemplos: http://localhost:8080/books
-			  http://localhost:8080/books?endYear=1999&startYear=1990
+  - Exemplos: http://localhost:8080/books <br>
+              http://localhost:8080/books?endYear=1999&startYear=1990
   
 - PUT /books/rent/{id} 
   - Aluga um livro no serviço.
@@ -33,7 +33,7 @@ Para rodar o serviço execute o comando 'java -jar target\RESTService-1.0.0.jar'
   - Exemplo: http://localhost:8080/books/0
  
 - POST /books 
-  - Salva um novo livro. Os parametros do novo livro devem ser passados em Json no corpo da mensagem. Se o livro foi criado com sucesso ele é retornado, se algum erro ocorrer uma mensagem é enviada.
+  - Salva um novo livro. Os parametros do novo livro devem ser passados em Json no corpo da mensagem. Se o livro foi criado com sucesso ou se algum erro ocorrer uma mensagem é enviada.
   - Exemplo: http://localhost:8080/books
   - Exemplo de Json do corpo da mensagem: { "title": "Guerra e paz", "author": "Leon Tolstói", "year": "1869" }. Todos os campos são obrigatórios.
  
