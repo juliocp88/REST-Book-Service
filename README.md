@@ -12,6 +12,7 @@ Para rodar o serviço execute o comando 'java -jar target\RESTService-1.0.0.jar'
 
 - POST /login
   - Retorna um Json com o token de acesso ao resto das rotas do serviço, deve ser enviado um Json com os campos 'user' e 'password'. Somente são aceitos os usuários cadastrados na tabela 'user' do banco do serviço. Este token deve ser enviado em TODAS as outras chamadas de rotas do serviço, no cabeçalho da requisição, com a chave 'authentication' e com o valor do token retornado por está rota.
+  - Exemplo: http://localhost:8080/login
   - Exemplo de Json do corpo da mensagem: {	"user" : "jcpinto",	"password" : "provaSoftDesign" }
 
 - GET /books 
