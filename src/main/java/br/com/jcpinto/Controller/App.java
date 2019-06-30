@@ -37,7 +37,7 @@ public class App {
 	/** 
 	 *   Descricao: Metodo de inicialização da classe
 	 *     
-	 *     Criacao: Julio C. Pinto       11/06/2019
+	 *     Criacao: Julio C. Pinto       28/06/2019
 	 *  Modificado: 
 	 * 
 	 */ 
@@ -45,11 +45,10 @@ public class App {
 		booksDB = new DBAccess();
 	} 
 	
-
 	/** 
 	 *   Descricao: Rota que realiza o login de um usuário
 	 *     
-	 *     Criacao: Julio C. Pinto       11/06/2019
+	 *     Criacao: Julio C. Pinto       28/06/2019
 	 *  Modificado: 
 	 * 
 	 */ 
@@ -91,7 +90,7 @@ public class App {
 	 *   Descricao: Rota que retorna 'offsetLimit' livros por vez e uma 
 	 *   			string com o caminho dos proximos livros
 	 *     
-	 *     Criacao: Julio C. Pinto       11/06/2019
+	 *     Criacao: Julio C. Pinto       28/06/2019
 	 *  Modificado: 
 	 * 
 	 */ 
@@ -131,7 +130,7 @@ public class App {
 	/** 
 	 *   Descricao: Rota que retorna um livro especifico 
 	 *     
-	 *     Criacao: Julio C. Pinto       11/06/2019
+	 *     Criacao: Julio C. Pinto       28/06/2019
 	 *  Modificado: 
 	 * 
 	 */ 
@@ -156,7 +155,7 @@ public class App {
 	/** 
 	 *   Descricao: Rota que cria um novo livro
 	 *     
-	 *     Criacao: Julio C. Pinto       11/06/2019
+	 *     Criacao: Julio C. Pinto       28/06/2019
 	 *  Modificado: 
 	 * 
 	 */ 
@@ -191,7 +190,7 @@ public class App {
 	/** 
 	 *   Descricao: Rota que atualiza um livro
 	 *     
-	 *     Criacao: Julio C. Pinto       11/06/2019
+	 *     Criacao: Julio C. Pinto       28/06/2019
 	 *  Modificado: 
 	 * 
 	 */ 
@@ -237,7 +236,7 @@ public class App {
 	/** 
 	 *   Descricao: Rota que remove um livro
 	 *     
-	 *     Criacao: Julio C. Pinto       11/06/2019
+	 *     Criacao: Julio C. Pinto       28/06/2019
 	 *  Modificado: 
 	 * 
 	 */ 
@@ -282,7 +281,7 @@ public class App {
 	/** 
 	 *   Descricao: Rota que aluga um livro
 	 *     
-	 *     Criacao: Julio C. Pinto       11/06/2019
+	 *     Criacao: Julio C. Pinto       28/06/2019
 	 *  Modificado: 
 	 * 
 	 */ 
@@ -327,7 +326,7 @@ public class App {
 	/** 
 	 *   Descricao: Rota que devolve um livro
 	 *     
-	 *     Criacao: Julio C. Pinto       11/06/2019
+	 *     Criacao: Julio C. Pinto       28/06/2019
 	 *  Modificado: 
 	 * 
 	 */ 
@@ -368,14 +367,11 @@ public class App {
 		System.out.println("returnBook - status: " + status + " message: " + message);
 		return new ResponseEntity<ResponseMessage>(new ResponseMessage(status,message), httpStatus);
 	}
-
-	
-	/////////////////////////////////////////////////////////////
 	
 	/** 
 	 *   Descricao: Método que inicializa o serviço
 	 *     
-	 *     Criacao: Julio C. Pinto       11/06/2019
+	 *     Criacao: Julio C. Pinto       28/06/2019
 	 *  Modificado: 
 	 * 
 	 */ 
