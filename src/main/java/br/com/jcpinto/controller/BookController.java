@@ -1,4 +1,4 @@
-package br.com.jcpinto.Controller;
+package br.com.jcpinto.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,31 +27,18 @@ import br.com.jcpinto.Model.ResponseResult;
 import br.com.jcpinto.Model.Token;
 
 @RestController
-@EnableAutoConfiguration
-public class App {
+@RequestMapping(value="/api")
+public class BookController {
 
 	private final Integer offsetLimit = 5;
 	private DBAccess booksDB;
     Hashtable<String, String> logins = new Hashtable<String, String>();
 
-	/** 
-	 *   Descricao: Metodo de inicialização da classe
-	 *     
-	 *     Criacao: Julio C. Pinto       28/06/2019
-	 *  Modificado: 
-	 * 
-	 */ 
-	public App() {
+
+	public BookController() {
 		booksDB = new DBAccess();
 	} 
 	
-	/** 
-	 *   Descricao: Rota que realiza o login de um usuário
-	 *     
-	 *     Criacao: Julio C. Pinto       28/06/2019
-	 *  Modificado: 
-	 * 
-	 */ 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<ResponseDefault> login(@RequestBody Login login) {
 
@@ -83,17 +70,7 @@ public class App {
 		System.out.println("saveNewBook = status: " + status + " message: " + message);
 		return new ResponseEntity<ResponseDefault>(new ResponseMessage(status,message), httpStatus);
 	}
-
-	////////////////////////////////////////////////////////////////////////
 	
-	/** 
-	 *   Descricao: Rota que retorna 'offsetLimit' livros por vez e uma 
-	 *   			string com o caminho dos proximos livros
-	 *     
-	 *     Criacao: Julio C. Pinto       28/06/2019
-	 *  Modificado: 
-	 * 
-	 */ 
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public ResponseEntity<ResponseDefault> getAllBooks(@RequestParam(value = "offset", required = false) Integer offset, 
 														@RequestParam(value = "startYear", required = false) Integer startYear,
@@ -127,13 +104,6 @@ public class App {
 		return new ResponseEntity<ResponseDefault>(new ResponseResult(results, nextPage), HttpStatus.OK);
 	}
 
-	/** 
-	 *   Descricao: Rota que retorna um livro especifico 
-	 *     
-	 *     Criacao: Julio C. Pinto       28/06/2019
-	 *  Modificado: 
-	 * 
-	 */ 
 	@RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
 	public ResponseEntity<ResponseDefault> getBook(@PathVariable("id") Integer id, @RequestHeader("authentication") String token) {
 		System.out.println("getBook - id = " + id);
@@ -152,13 +122,6 @@ public class App {
 
 	}
 
-	/** 
-	 *   Descricao: Rota que cria um novo livro
-	 *     
-	 *     Criacao: Julio C. Pinto       28/06/2019
-	 *  Modificado: 
-	 * 
-	 */ 
 	@RequestMapping(value = "/books", method = RequestMethod.POST)
 	public ResponseEntity<ResponseMessage> saveNewBook(@RequestBody Book book, @RequestHeader("authentication") String token) {
 		System.out.println("saveNewBook = \n" + book);
@@ -187,13 +150,6 @@ public class App {
 		return new ResponseEntity<ResponseMessage>(new ResponseMessage(status,message), httpStatus);
 	}
 
-	/** 
-	 *   Descricao: Rota que atualiza um livro
-	 *     
-	 *     Criacao: Julio C. Pinto       28/06/2019
-	 *  Modificado: 
-	 * 
-	 */ 
 	@RequestMapping(value = "/books/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<ResponseMessage> updateBook(@PathVariable("id") Integer id, @RequestBody Book book, @RequestHeader("authentication") String token) {
 		System.out.println("updateBook - \n" + book);
@@ -233,13 +189,6 @@ public class App {
 		return new ResponseEntity<ResponseMessage>(new ResponseMessage(status,message), httpStatus);
 	}
 
-	/** 
-	 *   Descricao: Rota que remove um livro
-	 *     
-	 *     Criacao: Julio C. Pinto       28/06/2019
-	 *  Modificado: 
-	 * 
-	 */ 
 	@RequestMapping(value = "/books/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<ResponseMessage> deleteBook(@PathVariable("id") Integer id, @RequestHeader("authentication") String token) {
 		System.out.println("deleteBook - id = " + id);
@@ -278,13 +227,6 @@ public class App {
 		return new ResponseEntity<ResponseMessage>(new ResponseMessage(status,message), httpStatus);
 	}
 
-	/** 
-	 *   Descricao: Rota que aluga um livro
-	 *     
-	 *     Criacao: Julio C. Pinto       28/06/2019
-	 *  Modificado: 
-	 * 
-	 */ 
 	@RequestMapping(value = "/books/rent/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<ResponseMessage> rentBook(@PathVariable("id") Integer id, @RequestHeader("authentication") String token) {
 		System.out.println("rentBook - id = " + id);
@@ -323,13 +265,6 @@ public class App {
 		return new ResponseEntity<ResponseMessage>(new ResponseMessage(status,message), httpStatus);
 	}
 
-	/** 
-	 *   Descricao: Rota que devolve um livro
-	 *     
-	 *     Criacao: Julio C. Pinto       28/06/2019
-	 *  Modificado: 
-	 * 
-	 */ 
 	@RequestMapping(value = "/books/return/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<ResponseMessage> returnBook(@PathVariable("id") Integer id, @RequestHeader("authentication") String token) {
 		System.out.println("returnBook - id = " + id);
@@ -367,19 +302,7 @@ public class App {
 		System.out.println("returnBook - status: " + status + " message: " + message);
 		return new ResponseEntity<ResponseMessage>(new ResponseMessage(status,message), httpStatus);
 	}
-	
-	/** 
-	 *   Descricao: Método que inicializa o serviço
-	 *     
-	 *     Criacao: Julio C. Pinto       28/06/2019
-	 *  Modificado: 
-	 * 
-	 */ 
-	public static void main(String[] args) throws Exception {
-		SpringApplication.run(App.class, args);
-	}	
-	
-	
+	 	
 	/////////////////////////////////////////////////////////////
 	///	Funções Auxiliares
 	/////////////////////////////////////////////////////////////
