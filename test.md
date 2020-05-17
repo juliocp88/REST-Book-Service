@@ -11,7 +11,7 @@ Para compilar o projeto va para a pasta raiz (onde está localizado o arquivo po
 Para rodar o serviço localmente execute o comando 'java -jar target\assembly-admin-service-1.0.0.jar', para finalizar-lo digite ctrl-c. O serviço estará acessivel localmente pelo endereço http://localhost:8080
 
 ## Endpoints
-
+----------------------------------
 ### Criar Sessão 
   _Endpoint para criação de sessões de assembleia. Cada sessão possui uma agenda com pautas para serem votadas._
 
@@ -32,7 +32,6 @@ Para rodar o serviço localmente execute o comando 'java -jar target\assembly-ad
     "date"        : "date"
 }
 ```
-
 * #### **Retornos:**
   
   * **Code:** 201 <br />
@@ -46,6 +45,305 @@ Para rodar o serviço localmente execute o comando 'java -jar target\assembly-ad
 }
 ```
   * **Code:** 400 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 500 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+----------------------------------
+### Listar Sessões 
+  _Endpoint para listar as sessões existentes._
+
+* #### **URL**
+
+  `/api/v1/sessions`
+
+* #### **Método:**
+  
+  `GET`
+  
+* #### **Path Parameters**
+
+  `offset : integer`
+
+* #### **Retornos:**
+  
+  * **Code:** 200 <br />
+  * **Content:** 
+```json
+{
+    "results" : [
+        {
+            "id"          : "integer",
+            "name"        : "string",
+            "description" : "string",
+            "date"        : "date"
+        }, 
+        ...
+    ],
+    "nextPage" : "string"
+}
+```
+  * **Code:** 500 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+----------------------------------
+### Pegar Sessão 
+  _Endpoint para pegar uma sessão específica._
+
+* #### **URL**
+
+  `/api/v1/sessions/{sessionId}`
+
+* #### **Método:**
+  
+  `GET`
+
+* #### **Retornos:**
+  
+  * **Code:** 200 <br />
+  * **Content:** 
+```json
+{
+    "id"          : "integer",
+    "name"        : "string",
+    "description" : "string",
+    "date"        : "date"
+}
+```
+  * **Code:** 404 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 500 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+----------------------------------
+### Deletar Sessão 
+  _Endpoint para deletar uma sessão específica._
+
+* #### **URL**
+
+  `/api/v1/sessions/{sessionId}`
+
+* #### **Método:**
+  
+  `DELETE`
+
+* #### **Retornos:**
+  
+  * **Code:** 200 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 404 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 500 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+
+----------------------------------
+### Criar Pauta da Agenda 
+  _Endpoint para criação de uma pauta da agenda de uma sessão._
+
+* #### **URL**
+
+  `/api/v1/sessions/{sessionId}/agenda`
+
+* #### **Método:**
+  
+  `POST`
+  
+* #### **Body**
+_O campo timeToVote é opcional deve ser enviado sempre em minutos._
+```json
+{
+    "name"        : "string",
+    "description" : "string",
+    "timeToVote"  : "integer"
+}
+```
+* #### **Retornos:**
+  
+  * **Code:** 201 <br />
+  * **Content:** 
+```json
+{
+    "id"            : "integer",
+    "name"          : "string",
+    "description"   : "string",
+    "timeToVote"    : "integer",
+    "pollStatus"    : "integer",
+    "startVoteDate" : "date",
+    "sessionId"     : "integer"
+}
+```
+  * **Code:** 400 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 500 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+----------------------------------
+### Listar Sessões 
+  _Endpoint para listar todas as pautas da agenda de uma sessão._
+
+* #### **URL**
+
+  `/api/v1/sessions/{sessionId}/agenda`
+
+* #### **Método:**
+  
+  `GET`
+  
+* #### **Path Parameters**
+
+  `offset : integer`
+
+* #### **Retornos:**
+  
+  * **Code:** 200 <br />
+  * **Content:** 
+```json
+{
+    "results" : [
+        {
+            "id"            : "integer",
+            "name"          : "string",
+            "description"   : "string",
+            "timeToVote"    : "integer",
+            "pollStatus"    : "integer",
+            "startVoteDate" : "date",
+            "sessionId"     : "integer"
+        }, 
+        ...
+    ],
+    "nextPage" : "string"
+}
+```
+  * **Code:** 500 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+----------------------------------
+### Pegar Sessão 
+  _Endpoint para pegar uma sessão específica._
+
+* #### **URL**
+
+  `/api/v1/sessions/{sessionId}/agenda/{agendaId}`
+
+* #### **Método:**
+  
+  `GET`
+
+* #### **Retornos:**
+  
+  * **Code:** 200 <br />
+  * **Content:** 
+```json
+{
+    "id"            : "integer",
+    "name"          : "string",
+    "description"   : "string",
+    "timeToVote"    : "integer",
+    "pollStatus"    : "integer",
+    "startVoteDate" : "date",
+    "sessionId"     : "integer"
+}
+```
+  * **Code:** 404 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 500 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+----------------------------------
+### Deletar Sessão 
+  _Endpoint para deletar uma pauta da agenda de uma sessão._
+
+* #### **URL**
+
+  `/api/v1/sessions/{sessionId}/agenda/{agendaId}`
+
+* #### **Método:**
+  
+  `DELETE`
+
+* #### **Retornos:**
+  
+  * **Code:** 200 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 404 <br />
   * **Content:** 
 ```json
 {
