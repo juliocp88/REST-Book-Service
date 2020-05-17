@@ -234,7 +234,7 @@ _O campo timeToVote é opcional deve ser enviado sempre em minutos._
 }
 ```
 ----------------------------------
-### Listar Sessões 
+### Listar Pautas da Agenda 
   _Endpoint para listar todas as pautas da agenda de uma sessão._
 
 * #### **URL**
@@ -279,8 +279,8 @@ _O campo timeToVote é opcional deve ser enviado sempre em minutos._
 }
 ```
 ----------------------------------
-### Pegar Sessão 
-  _Endpoint para pegar uma sessão específica._
+### Pegar Pauta da Agenda 
+  _Endpoint para pegar uma pauta da agenda de uma sessão._
 
 * #### **URL**
 
@@ -322,7 +322,7 @@ _O campo timeToVote é opcional deve ser enviado sempre em minutos._
 }
 ```
 ----------------------------------
-### Deletar Sessão 
+### Deletar Pauta da Agenda 
   _Endpoint para deletar uma pauta da agenda de uma sessão._
 
 * #### **URL**
@@ -341,6 +341,163 @@ _O campo timeToVote é opcional deve ser enviado sempre em minutos._
 {
     "status"  : "string",
     "message" : "string",
+}
+```
+  * **Code:** 404 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 500 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+----------------------------------
+### Abrir Votação de uma Pauta da Agenda 
+  _Endpoint para abrir o periodo de votação de uma pauta da agenda de uma sessão._
+
+* #### **URL**
+
+  `/api/v1/sessions/{sessionId}/agenda/{agendaId}/open-pool`
+
+* #### **Método:**
+  
+  `PUT`
+
+* #### **Retornos:**
+  
+  * **Code:** 200 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 404 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 409 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 500 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+----------------------------------
+### Votar em uma Pauta da Agenda 
+  _Endpoint para abrir o periodo de votação de uma pauta da agenda de uma sessão._
+
+* #### **URL**
+
+  `/api/v1/sessions/{sessionId}/agenda/{agendaId}/vote`
+
+* #### **Método:**
+  
+  `POST`
+
+* #### **Body**
+_O campo vote reconhece apenas os votos 'Sim' e 'Não'._
+```json
+{
+    "cpf"  : "string",
+    "vote" : "string"
+}
+```
+
+* #### **Retornos:**
+  
+  * **Code:** 200 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 400 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 403 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 404 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+  * **Code:** 500 <br />
+  * **Content:** 
+```json
+{
+    "status"  : "string",
+    "message" : "string",
+}
+```
+----------------------------------
+### Pegar o Resultado da Votação de uma Pauta da Agenda 
+  _Endpoint para pegar os resultados de uma pauta da agenda de uma sessão._
+
+* #### **URL**
+
+  `/api/v1/sessions/{sessionId}/agenda/{agendaId}/results`
+
+* #### **Método:**
+  
+  `GET`
+
+* #### **Retornos:**
+  
+  * **Code:** 200 <br />
+  * **Content:** 
+```json
+{
+    "votes" : [
+        {
+            "cpf"  : "string",
+            "vote" : "string"
+        }, 
+        ...
+    ],
+    "numVotes"  : "integer",
+    "yesVotes"  : "integer",
+    "noVotes"   : "integer",
+    "poolState" : "string",
+    "status"    : "string"
 }
 ```
   * **Code:** 404 <br />
